@@ -1,0 +1,40 @@
+diff -crB contrib/leaflet/leaflet_views/src/Plugin/views/row/LeafletMarker.php leaflet/leaflet_views/src/Plugin/views/row/LeafletMarker.php
+*** contrib/leaflet/leaflet_views/src/Plugin/views/row/LeafletMarker.php	2016-10-03 16:55:43.000000000 +0200
+--- leaflet/leaflet_views/src/Plugin/views/row/LeafletMarker.php	2017-11-16 12:13:56.000000000 +0100
+***************
+*** 61,67 ****
+      foreach ($this->displayHandler->getHandlers('field') as $field_id => $handler) {
+        $label = $handler->adminLabel() ?: $field_id;
+        $fields[$field_id] = $label;
+!       if (is_a($handler, 'Drupal\views\Plugin\views\field\Field')) {
+          $field_storage_definitions = \Drupal::entityManager()
+            ->getFieldStorageDefinitions($handler->getEntityType());
+          $field_storage_definition = $field_storage_definitions[$handler->definition['field_name']];
+--- 61,67 ----
+      foreach ($this->displayHandler->getHandlers('field') as $field_id => $handler) {
+        $label = $handler->adminLabel() ?: $field_id;
+        $fields[$field_id] = $label;
+!       if (is_a($handler, 'Drupal\views\Plugin\views\field\EntityField')) {
+          $field_storage_definitions = \Drupal::entityManager()
+            ->getFieldStorageDefinitions($handler->getEntityType());
+          $field_storage_definition = $field_storage_definitions[$handler->definition['field_name']];
+diff -crB contrib/leaflet/leaflet_views/src/Plugin/views/style/LeafletMap.php leaflet/leaflet_views/src/Plugin/views/style/LeafletMap.php
+*** contrib/leaflet/leaflet_views/src/Plugin/views/style/LeafletMap.php	2016-10-03 16:55:43.000000000 +0200
+--- leaflet/leaflet_views/src/Plugin/views/style/LeafletMap.php	2017-11-16 12:13:56.000000000 +0100
+***************
+*** 73,79 ****
+      foreach ($this->displayHandler->getHandlers('field') as $field_id => $handler) {
+        $label = $handler->adminLabel() ?: $field_id;
+        $fields[$field_id] = $label;
+!       if (is_a($handler, '\Drupal\views\Plugin\views\field\Field')) {
+          $field_storage_definitions = \Drupal::entityManager()
+            ->getFieldStorageDefinitions($handler->getEntityType());
+          $field_storage_definition = $field_storage_definitions[$handler->definition['field_name']];
+--- 73,79 ----
+      foreach ($this->displayHandler->getHandlers('field') as $field_id => $handler) {
+        $label = $handler->adminLabel() ?: $field_id;
+        $fields[$field_id] = $label;
+!       if (is_a($handler, '\Drupal\views\Plugin\views\field\EntityField')) {
+          $field_storage_definitions = \Drupal::entityManager()
+            ->getFieldStorageDefinitions($handler->getEntityType());
+          $field_storage_definition = $field_storage_definitions[$handler->definition['field_name']];
