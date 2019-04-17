@@ -1,0 +1,13 @@
+diff --git a/src/Plugin/simple_sitemap/UrlGenerator/UrlGeneratorBase.php b/src/Plugin/simple_sitemap/UrlGenerator/UrlGeneratorBase.php
+index ffb3763..079d948 100644
+--- a/src/Plugin/simple_sitemap/UrlGenerator/UrlGeneratorBase.php
++++ b/src/Plugin/simple_sitemap/UrlGenerator/UrlGeneratorBase.php
+@@ -269,7 +269,7 @@ abstract class UrlGeneratorBase extends UrlGeneratorPluginBase implements UrlGen
+     foreach ($entity->getTranslationLanguages() as $language) {
+       if (!isset($this->batchSettings['excluded_languages'][$language->getId()]) || $language->isDefault()) {
+         $translation = $entity->getTranslation($language->getId());
+-        if ($translation->access('view', $this->anonUser)) {
++        if ($translation->isPublished()) {
+           $url_object->setOption('language', $language);
+           $alternate_urls[$language->getId()] = $this->replaceBaseUrlWithCustom($url_object->toString());
+         }
